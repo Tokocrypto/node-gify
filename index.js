@@ -49,6 +49,7 @@ function gify(input, output, opts, fn) {
   var rate = opts.rate || 10;
   var delay = opts.delay || 'auto';
   var quality = opts.quality || 50;
+  var colors = opts.colors || 25;
 
   // auto delay
   if ('auto' == delay) {
@@ -104,6 +105,8 @@ function gify(input, output, opts, fn) {
       cmd = ['gm', 'convert'];
       cmd.push('-delay', String(delay || 0));
       cmd.push('-loop', '0');
+      cmd.push('+dither');
+      cmd.push('-colors', String(colors || 25));
       cmd.push('-quality', String(quality || 0));
       cmd.push(wildcard);
       cmd.push(output);
